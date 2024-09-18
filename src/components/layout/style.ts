@@ -80,6 +80,7 @@ export const FormWrapper = styled.div`
     box-shadow: 0px 0px 66.2px -22px rgba(0, 0, 0, 0.13);
     border-radius: 40px;
     padding: 40px 50px;
+    text-align: left;
 `
 export const FormItem = styled.div`
     display: grid;

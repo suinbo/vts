@@ -1,8 +1,9 @@
 import { Content, ReportContent, Row, Title } from "./style"
-import { Section1, Section2 } from "./_component"
+import { Section2 } from "./_component"
 import { Banner, Button, Popup } from "@/components/ui"
 import React, { useCallback, useState } from "react"
 import { Form } from "@/components/layout"
+import { NavIcon } from "@/components/ui/icon"
 
 const Report = () => {
     const [view, setView] = useState<number>(1)
@@ -75,13 +76,23 @@ const Report = () => {
                     <div className="step-title">
                         <span>[VTS 검사]</span>검사 결과
                     </div>
-                    {/* <div className="result-save">
-                        <Button text="결과 저장" onClick={() => setOpenPopup(true)} theme="lined_gray" />
-                    </div> */}
+                    <div>
+                        <Button
+                            theme="lined"
+                            style={{ padding: "8px 24px" }}
+                            onClick={() => ({})}
+                            text={
+                                <span className="button-name">
+                                    CARE 포털 바로가기
+                                    <NavIcon style={{ width: 10, height: 20 }} />
+                                </span>
+                            }
+                        />
+                    </div>
                 </Title>
                 <Form>
                     {resultView[view]}
-                    <div onClick={() => setView(2)}>검사내용 보기</div>
+                    <div onClick={() => setView(view == 1 ? 2 : 1)}>검사내용 보기</div>
                 </Form>
             </Content>
             <div></div>

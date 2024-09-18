@@ -11,6 +11,7 @@ const Button = ({
     children,
     $isClicked,
     theme = "primary",
+    style,
 }: {
     refs?: RefObject<HTMLButtonElement>
     onClick?: () => void
@@ -20,10 +21,12 @@ const Button = ({
     disabled?: boolean
     children?: React.ReactNode
     $isClicked?: boolean
-    theme?: "primary" | "secondary" | "checked" | "lined" | "lined_gray"
+    theme?: "primary" | "secondary" | "lined"
+    style?: React.CSSProperties
 }) => {
     return (
         <StyledButton
+            style={style}
             theme={theme}
             ref={refs}
             onClick={() => !disabled && onClick && onClick()}

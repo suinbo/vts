@@ -58,13 +58,7 @@ const Privacy = () => {
 
     return (
         <>
-            <Nav type="prev">
-                <NavIcon
-                    fill="#DADDE4"
-                    style={{ width: 40, height: 40 }}
-                    onClick={() => setState(prev => ({ ...prev, step: 1, page: 14 }))}
-                />
-            </Nav>
+            <div></div>
             <Content>
                 <InfoContent />
             </Content>

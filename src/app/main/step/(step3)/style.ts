@@ -30,7 +30,14 @@ export const Title = styled.div`
         }
     }
 
-    .result-save {
+    .button-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        svg {
+            transform: rotate(-90deg);
+        }
     }
 `
 

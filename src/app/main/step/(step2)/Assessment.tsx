@@ -2,9 +2,10 @@ import { NavIcon } from "@/components/ui/icon"
 import { Answer, AssessmentForm, Nav, Question } from "./style"
 import useStore from "@/store"
 import { Popup, StepBar } from "@/components/ui"
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useState } from "react"
 import { useAssesmentData } from "../useData"
 import { Content } from "../style"
+import { getEvalsCount } from "../utils"
 
 const formatNumber = (num: number) => {
     return num < 10 ? `0${num}` : num
@@ -86,7 +87,8 @@ const Assessment = () => {
                             onClick={() => {
                                 if (!currentValue.item.evals) setIsOpenPopup(true)
                                 else {
-                                    setState(prev => ({ ...prev, page: 31 }))
+                                    setState(prev => ({ ...prev, page: 31, score: getEvalsCount(currentValue.list) }))
+                                    // DB 저장
                                 }
                             }}
                         />

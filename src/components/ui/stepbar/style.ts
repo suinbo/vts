@@ -27,6 +27,7 @@ export const Step = styled.div`
 `
 
 export const Circle = styled.div<{ $active?: boolean; $fill: string }>`
+    cursor: pointer;
     width: 40px;
     height: 40px;
     border-radius: 50%;

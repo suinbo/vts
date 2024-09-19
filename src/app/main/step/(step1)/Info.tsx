@@ -5,7 +5,7 @@ import { Button, Checkbox, Input, Popup, Selectbox } from "@/components/ui"
 import { NavIcon } from "@/components/ui/icon"
 import useStore from "@/store"
 import { genders } from "@/resources/data"
-import { ButtonWrapper, Content, DefaultNav as Nav } from "../style"
+import { ButtonWrapper, Content } from "../style"
 import { useValidate } from "@/hooks/useValidate"
 
 const ages = Array.from({ length: 100 }, (_, i) => {
@@ -25,7 +25,7 @@ const Info = () => {
 
     const [isChecked, setChecked] = useState<boolean>(false)
     const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false)
-    const { isInValid } = useValidate([info])
+    const { isInValid } = useValidate(info)
 
     const formContent = useCallback(() => {
         return (
@@ -33,7 +33,11 @@ const Info = () => {
                 <FormItem>
                     <NameForm>
                         <div>이름</div>
-                        <Input placeholder="이름을 입력하세요." />
+                        <Input
+                            placeholder="이름을 입력하세요."
+                            value={info.name}
+                            onChange={name => setState(prev => ({ ...prev, info: { ...prev.info, name } }))}
+                        />
                     </NameForm>
                     <GenderForm>
                         <div>성별</div>
@@ -43,12 +47,12 @@ const Info = () => {
                                     key={id}
                                     theme={info.gender == id ? "primary" : "secondary"}
                                     text={<Checkbox label={value} theme="lined" isChecked={info.gender == id} />}
-                                    // onClick={() =>
-                                    //     // setState(prev => ({
-                                    //     //     ...prev,
-                                    //     //     info: { ...prev.info, [target]: { ...prev.info[target], gender: id } },
-                                    //     // }))
-                                    // }
+                                    onClick={() =>
+                                        setState(prev => ({
+                                            ...prev,
+                                            info: { ...prev.info, gender: id },
+                                        }))
+                                    }
                                 />
                             ))}
                         </div>
@@ -62,33 +66,31 @@ const Info = () => {
                                     <Input
                                         type="number"
                                         theme="lined"
-                                        //value={age ?? ""}
+                                        value={info.age ?? ""}
                                         onChange={value => {
-                                            if (Number(value) > 130) return
-                                            // setState(prev => ({
-                                            //     ...prev,
-                                            //     info: {
-                                            //         ...prev.info,
-                                            //         [target]: {
-                                            //             ...prev.info[target],
-                                            //             age: value,
-                                            //         },
-                                            //     },
-                                            // }))
+                                            const numValue = Number(value)
+                                            if (numValue > 130) return
+                                            setState(prev => ({
+                                                ...prev,
+                                                info: {
+                                                    ...prev.info,
+                                                    age: numValue,
+                                                },
+                                            }))
                                         }}
                                     />
                                 ) : (
                                     <Selectbox
                                         items={ages}
-                                        selectedId={""}
+                                        selectedId={info.age}
                                         onSelect={({ id }) => {
-                                            // setState(prev => ({
-                                            //     ...prev,
-                                            //     info: {
-                                            //         ...prev.info,
-                                            //         [target]: { ...prev.info[target], age: Number(id) },
-                                            //     },
-                                            // }))
+                                            setState(prev => ({
+                                                ...prev,
+                                                info: {
+                                                    ...prev.info,
+                                                    age: Number(id),
+                                                },
+                                            }))
                                         }}
                                         style={{ height: 220 }}
                                     />
@@ -96,7 +98,12 @@ const Info = () => {
                                 <span>세</span>
                             </div>
                             <div>
-                                <Checkbox label="직접 입력" theme="secondary" isChecked={isChecked} />
+                                <Checkbox
+                                    label="직접 입력"
+                                    theme="secondary"
+                                    onChange={setChecked}
+                                    isChecked={isChecked}
+                                />
                             </div>
                         </div>
                     </AgeForm>
@@ -112,13 +119,19 @@ const Info = () => {
                                     <NavIcon style={{ width: 10, height: 20 }} />
                                 </span>
                             }
-                            onClick={() => setState(prev => ({ ...prev, step: 2, page: 21 }))}
+                            onClick={() => {
+                                if (isInValid) setIsOpenPopup(true)
+                                else setState(prev => ({ ...prev, step: 2, page: 21 }))
+                            }}
                         />
                     </ButtonWrapper>
                 </ResultBottom>
+                {isOpenPopup && (
+                    <Popup isAlert={true} text="기본정보를 모두 작성해주세요." onSave={() => setIsOpenPopup(false)} />
+                )}
             </ResultForm>
         )
-    }, [info])
+    }, [info, isChecked])
 
     return (
         <>

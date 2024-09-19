@@ -63,9 +63,15 @@ export const Description = styled.div`
     border-radius: 26px;
     background: #fff;
     box-shadow: 0px 0px 66.2px -22px rgba(0, 0, 0, 0.13);
-    padding: 24px 40px;
+    padding: 30px 40px;
     width: 100%;
     text-align: left;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
 
     li {
         display: flex;

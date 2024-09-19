@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
     padding: 48px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 10fr;
+    grid-template-rows: 1fr 10fr;
     align-items: center;
     height: 100vh;
 
@@ -81,6 +81,7 @@ export const FormWrapper = styled.div`
     border-radius: 40px;
     padding: 40px 50px;
     text-align: left;
+    justify-content: space-between;
 `
 export const FormItem = styled.div`
     display: grid;

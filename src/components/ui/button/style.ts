@@ -19,11 +19,17 @@ const values = () => {
             border: "2px solid #132D6F",
             fontWeight: 500,
         },
+        lined_gray: {
+            fColor: "#343434",
+            bgColor: "#fff",
+            border: "2px solid #DFE0E2",
+            padding: "3px 30px",
+        },
     } as { [key: string]: { fColor: string; bgColor: string; border: string; padding?: string; fontWeight?: number } }
 }
 
 export const StyledButton = styled.button<{
-    theme?: "primary" | "secondary" | "lined"
+    theme?: "primary" | "secondary" | "lined" | "lined_gray"
     $isClicked?: boolean
 }>`
     cursor: pointer;

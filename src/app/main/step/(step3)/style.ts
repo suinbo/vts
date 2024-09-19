@@ -41,42 +41,20 @@ export const Title = styled.div`
     }
 `
 
-export const ReportContent = styled.div`
-    width: 100%;
-    height: 460px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 5fr;
-    gap: 20px;
-`
-
-export const Row = styled.div<{ $color?: string }>`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 60px;
-    text-align: center;
-    border-bottom: 1px solid #d0d3db;
+export const ButtonWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
-    padding: 0 20px;
+    cursor: pointer;
+    gap: 18px;
 
-    .row-title {
-        text-align: left;
-        font-weight: 500;
+    > span {
+        color: #132d6f;
+        padding: 1px;
+        border-bottom: 1px solid #132d6f;
     }
 
-    .total-score {
-        font-size: 20px;
-        font-weight: 600;
-        color: ${({ $color }) => $color};
-    }
-
-    &:first-child {
-        padding-bottom: 14px;
-        font-weight: 500;
-    }
-
-    &:nth-child(4),
-    &:nth-child(5) {
-        grid-template-columns: 1fr 5fr;
+    svg {
+        transform: rotate(-90deg);
     }
 `

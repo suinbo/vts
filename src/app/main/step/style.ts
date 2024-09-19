@@ -21,7 +21,6 @@ export const Content = styled.div`
 export const ButtonWrapper = styled.div`
     display: flex;
     justify-content: flex-end;
-    padding-top: 10px;
 
     button {
         width: 20%;

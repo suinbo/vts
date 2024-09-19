@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 export const useAssesmentData = () => {
     const {
         state: { current_enum },
-        setState,
     } = useStore()
 
     const [currentValue, setCurrentValue] = useState<CurrentValueProp>({

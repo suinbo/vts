@@ -1,5 +1,5 @@
 /** 평가화면 */
-type AssessmentProp = {
+export type AssessmentProp = {
     id: number
     evals: number | null
     content: string
@@ -14,4 +14,10 @@ export type CurrentValueProp = {
 export interface ItemsProp {
     id: string
     value: string
+}
+
+export interface ResultProp {
+    total: number
+    grade?: string
+    opinion?: string
 }

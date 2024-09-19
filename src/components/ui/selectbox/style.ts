@@ -8,6 +8,7 @@ export const SelectboxOpener = styled.div<{ $active: boolean; focus?: boolean; $
     align-items: center;
     gap: 20px;
     border-bottom: ${props => (props.$hasInner ? "none" : props.focus ? "1px solid #132d6f" : "1px solid #D0D3DB")};
+    text-align: center;
 
     > div {
         white-space: nowrap;

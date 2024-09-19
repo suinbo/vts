@@ -17,7 +17,7 @@ export default function Selectbox({
     isFocused,
 }: {
     items: SelectboxItem[]
-    selectedId?: string
+    selectedId?: string | number | null
     innerElement?: React.ReactNode
     onSelect: (selectedItem: SelectboxItem) => void
     style?: React.CSSProperties

@@ -75,16 +75,18 @@ export const AssessmentForm = styled.div`
     height: 460px;
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: 80px;
 `
 
 export const Question = styled.div`
-    display: flex;
-    flex-direction: column;
+    display: grid;
     align-items: center;
-    gap: 60px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr;
 
     .numbering {
+        display: flex;
+        justify-content: center;
         .progress {
             display: flex;
             font-size: 32px;
@@ -103,6 +105,8 @@ export const Question = styled.div`
     }
 
     .content {
+        display: flex;
+        justify-content: center;
         text-align: left;
         font-size: 26px;
     }

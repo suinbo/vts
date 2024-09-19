@@ -14,7 +14,6 @@ export const Title = styled.div`
 export const FormItem = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0 22px;
     padding-bottom: 50px;
     border-bottom: 2px solid #d1d8e4;
 `
@@ -52,7 +51,7 @@ export const AgeForm = styled.div`
 
         > div {
             display: flex;
-            gap: 10px;
+            gap: 15px;
         }
     }
 `
@@ -104,5 +103,5 @@ export const ResultItem = styled.div`
 export const ResultBottom = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    justify-content: space-between;
 `

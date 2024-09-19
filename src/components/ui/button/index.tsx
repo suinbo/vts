@@ -21,7 +21,7 @@ const Button = ({
     disabled?: boolean
     children?: React.ReactNode
     $isClicked?: boolean
-    theme?: "primary" | "secondary" | "lined"
+    theme?: "primary" | "secondary" | "lined" | "lined_gray"
     style?: React.CSSProperties
 }) => {
     return (

@@ -4,8 +4,8 @@ import StyledComponentsRegistry from "@/lib/registry"
 import "./globals.scss"
 
 export const metadata: Metadata = {
-    title: "위험성 판단 체크리스트",
-    description: "광주경찰청 AI 통합케어 서비스 - 위험성 판단 체크리스트",
+    title: "VTS 검사",
+    description: "광주경찰청 AI 통합케어 서비스 - VTS 검사",
 }
 
 export const roboto = Roboto({

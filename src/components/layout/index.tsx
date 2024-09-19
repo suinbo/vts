@@ -1,7 +1,6 @@
 import Image from "next/image"
-import { FormWrapper, FormTitle, Header, Toolbar, ToolbarWrapper, Wrapper, ListNav } from "./style"
-import { Popup, SideList, StepBar } from "../ui"
-import useStore from "@/store"
+import { FormWrapper, Header, Toolbar, ToolbarWrapper, Wrapper } from "./style"
+import { Popup } from "../ui"
 import { home, logout } from "@/assets/images"
 import { useState } from "react"
 

@@ -1,11 +1,9 @@
 "use client"
 
-import { RadioButton } from "@/components/ui"
 import { Wrapper, Content, Description, Header, Title, Body, Navigator } from "./style"
 import Image from "next/image"
-import { arrow, check } from "@/assets/images"
+import { arrow } from "@/assets/images"
 import useStore from "@/store"
-import { userTypes } from "@/resources/data"
 
 const Intro = () => {
     const { setState } = useStore()

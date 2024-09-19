@@ -1,6 +1,6 @@
 import useStore from "@/store"
 import { NavIcon } from "@/components/ui/icon"
-import { PrivacyForm, PrivacyContent, Nav } from "./style"
+import { PrivacyForm, PrivacyContent } from "./style"
 import { Button, Checkbox } from "@/components/ui"
 import { useState } from "react"
 import { ButtonWrapper, Content } from "../style"

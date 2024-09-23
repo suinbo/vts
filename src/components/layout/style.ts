@@ -51,6 +51,7 @@ export const ToolbarWrapper = styled.div`
 `
 
 export const Toolbar = styled.div`
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;

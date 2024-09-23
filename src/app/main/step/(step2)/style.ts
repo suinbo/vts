@@ -64,6 +64,7 @@ export const PrivacyContent = styled.div`
         gap: 30px;
 
         > p {
+            cursor: pointer;
             font-size: 20px;
             font-weight: 500;
         }

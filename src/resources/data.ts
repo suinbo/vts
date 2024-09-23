@@ -1,3 +1,12 @@
+export const popupMessage: { [key: string]: string } = {
+    gohome: "내용을 저장하고 홈 화면으로 이동하시겠습니까?",
+    logout: "로그아웃 하시겠습니까?",
+    goreport: "마지막 문항 응답을 저장하시겠습니까?",
+    checkanswer: "문항에 답변해주세요.",
+    fillinfo: "인정사항을 모두 작성해주세요.",
+    saveresult: "[VTS 검사] 결과를 저장하시겠습니까?",
+}
+
 export const questions = [
     { id: 1, evals: null, content: "이번 사건과 관련된 기억들이 반복적으로 생각난다." },
     { id: 2, evals: null, content: "가해자의 모습이 자꾸 떠오른다." },

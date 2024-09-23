@@ -1,11 +1,13 @@
 import { NavIcon } from "@/components/ui/icon"
 import { Answer, AssessmentForm, Nav, Question } from "./style"
 import useStore from "@/store"
-import { Popup, StepBar } from "@/components/ui"
-import { useCallback, useState } from "react"
+import { StepBar } from "@/components/ui"
+import { useCallback } from "react"
 import { useAssesmentData } from "../useData"
 import { Content } from "../style"
 import { getEvalsCount } from "../utils"
+import usePopupStore from "@/store/usePopup"
+import { POPUPTYPE } from "@/resources/constant"
 
 const formatNumber = (num: number) => {
     return num < 10 ? `0${num}` : num
@@ -17,8 +19,8 @@ const Assessment = () => {
         setState,
     } = useStore()
 
+    const { setPopup } = usePopupStore()
     const { currentValue, setCurrentValue } = useAssesmentData()
-    const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false)
 
     // 문항 변경
     const onControl = useCallback(
@@ -85,7 +87,8 @@ const Assessment = () => {
                             fill="#132D6F"
                             style={{ width: 40, height: 40 }}
                             onClick={() => {
-                                if (!currentValue.item.evals) setIsOpenPopup(true)
+                                if (!currentValue.item.evals)
+                                    setPopup(() => ({ isNotice: true, type: POPUPTYPE.CHECKANSWER, isOpen: true }))
                                 else {
                                     setState(prev => ({ ...prev, page: 31, score: getEvalsCount(currentValue.list) }))
                                     // DB 저장
@@ -99,19 +102,13 @@ const Assessment = () => {
                         fill="#DADDE4"
                         style={{ width: 40, height: 40 }}
                         onClick={() => {
-                            if (!currentValue.item.evals) setIsOpenPopup(true)
+                            if (!currentValue.item.evals)
+                                setPopup(() => ({ isNotice: true, type: POPUPTYPE.CHECKANSWER, isOpen: true }))
                             else onControl(current_enum + 1)
                         }}
                     />
                 )}
             </Nav>
-            {isOpenPopup && (
-                <Popup
-                    isAlert={true}
-                    text={`[ ${currentValue.item.id} ] 번 문항에 답변해주세요.`}
-                    onSave={() => setIsOpenPopup(false)}
-                />
-            )}
         </>
     )
 }

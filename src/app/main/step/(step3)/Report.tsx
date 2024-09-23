@@ -1,11 +1,13 @@
 import { ButtonWrapper, Content, Title } from "./style"
-import { Button, Popup } from "@/components/ui"
+import { Button } from "@/components/ui"
 import React, { useCallback, useMemo, useState } from "react"
 import { Form } from "@/components/layout"
 import { NavIcon } from "@/components/ui/icon"
 import useStore from "@/store"
 import { getEvalTotalScore, getGrade } from "../utils"
 import { ResultView1, ResultView2 } from "./_component"
+import usePopupStore from "@/store/usePopup"
+import { POPUPTYPE } from "@/resources/constant"
 
 const Report = () => {
     const {
@@ -13,7 +15,8 @@ const Report = () => {
     } = useStore()
 
     const [view, setView] = useState<number>(1)
-    const [openPopup, setOpenPopup] = useState<boolean>(false)
+    const { setPopup } = usePopupStore()
+
     const handlePrint = useCallback(() => {
         window.open("/result", "_blank", "width=811,height=1123")
     }, [])
@@ -55,7 +58,18 @@ const Report = () => {
                         />
                     </div> */}
                     <div className="result-save">
-                        <Button text="결과 저장" onClick={() => setOpenPopup(true)} theme="lined_gray" />
+                        <Button
+                            text="결과 저장"
+                            onClick={() =>
+                                setPopup(() => ({
+                                    isNotice: false,
+                                    isOpen: true,
+                                    type: POPUPTYPE.SAVERESULT,
+                                    onClick: handlePrint,
+                                }))
+                            }
+                            theme="lined_gray"
+                        />
                     </div>
                 </Title>
                 <Form>
@@ -69,13 +83,6 @@ const Report = () => {
                 </Form>
             </Content>
             <div></div>
-            {openPopup && (
-                <Popup
-                    text="[위험성 판단] 검사 결과를 저장하시겠습니까?"
-                    onSave={handlePrint}
-                    onClose={() => setOpenPopup(false)}
-                />
-            )}
         </>
     )
 }

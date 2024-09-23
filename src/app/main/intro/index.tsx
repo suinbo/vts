@@ -2,15 +2,46 @@
 
 import { Wrapper, Content, Description, Header, Title, Body, Navigator } from "./style"
 import Image from "next/image"
-import { arrow } from "@/assets/images"
+import { arrow, logout } from "@/assets/images"
 import useStore from "@/store"
+import { Toolbar, ToolbarWrapper } from "@/components/layout/style"
+import usePopupStore from "@/store/usePopup"
+import { POPUPTYPE } from "@/resources/constant"
+import { useControlPage } from "@/hooks/useControlPage"
+import { Popup } from "@/components/ui"
+import { popupMessage } from "@/resources/data"
 
 const Intro = () => {
     const { setState } = useStore()
+    const { onLogout } = useControlPage()
+    const { popup, setPopup } = usePopupStore()
 
     return (
         <Wrapper>
-            <Header>인공지능 기반 범죄피해자 지원 서비스</Header>
+            <Header>
+                <div>
+                    <span> 인공지능 기반 범죄피해자 지원 서비스</span>
+                </div>
+                <ToolbarWrapper>
+                    <Toolbar
+                        onClick={() => {
+                            setPopup(() => ({
+                                type: POPUPTYPE.LOGOUT,
+                                onClick: () => {
+                                    onLogout()
+                                    setPopup(prev => ({ ...prev, isOpen: false }))
+                                },
+                                isNotice: false,
+                                isOpen: true,
+                            }))
+                        }}>
+                        <span>
+                            <Image alt="logout" src={logout} />
+                        </span>
+                        <span>로그아웃</span>
+                    </Toolbar>
+                </ToolbarWrapper>
+            </Header>
             <Body>
                 <div></div>
                 <Content>
@@ -35,6 +66,14 @@ const Intro = () => {
             <Navigator onClick={() => setState(prev => ({ ...prev, step: 1, page: 11 }))}>
                 <Image src={arrow} alt="arrow" priority />
             </Navigator>
+            {popup.isOpen && (
+                <Popup
+                    isNotice={popup.isNotice}
+                    text={popupMessage[popup.type]}
+                    onSave={popup.onClick}
+                    onClose={() => setPopup(prev => ({ ...prev, isOpen: false }))}
+                />
+            )}
         </Wrapper>
     )
 }

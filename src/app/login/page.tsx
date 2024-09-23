@@ -1,15 +1,30 @@
 "use client"
 
 import { Button, Input } from "@/components/ui"
-import { Suspense, useState } from "react"
+import { Suspense, useCallback, useState } from "react"
 import { useRouter } from "next/navigation"
 import { ButtonForm, InputForm } from "./style"
-import useStore from "@/store"
+import useStore, { defaultValue } from "@/store"
+import { supabase } from "@/utils/superbase"
 
 const Login = () => {
     const router = useRouter()
     const { setState } = useStore()
     const [{ id, password }, setValue] = useState<{ id: string; password: string }>({ id: "", password: "" })
+
+    const onSignIn = useCallback(async () => {
+        const { error } = await supabase.auth.signInWithPassword({
+            email: `${id}@atc.com`,
+            password,
+        })
+
+        if (error) {
+            // setErrorMessage(error.message)
+        } else {
+            router.push("/")
+            setState(() => ({ ...defaultValue }))
+        }
+    }, [id, password])
 
     return (
         <Suspense>
@@ -31,7 +46,7 @@ const Login = () => {
                 />
             </InputForm>
             <ButtonForm>
-                <Button onClick={() => router.push("/")} text="로그인" />
+                <Button onClick={onSignIn} text="로그인" />
                 <span>※ 아이디와 비밀번호는 담당자 (02-1234-5678) 에게 문의해주세요.</span>
             </ButtonForm>
         </Suspense>

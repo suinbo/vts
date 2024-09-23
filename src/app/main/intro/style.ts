@@ -8,7 +8,11 @@ export const Wrapper = styled.div`
     align-items: center;
     height: 100vh;
 `
-export const Header = styled.div``
+export const Header = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
 
 export const Body = styled.div`
     padding: 16px;

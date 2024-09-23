@@ -2,25 +2,33 @@ import Image from "next/image"
 import { FormWrapper, Header, Toolbar, ToolbarWrapper, Wrapper } from "./style"
 import { Popup } from "../ui"
 import { home, logout } from "@/assets/images"
-import { useState } from "react"
+import usePopupStore from "@/store/usePopup"
+import { popupMessage } from "@/resources/data"
+import { useControlPage } from "@/hooks/useControlPage"
+import { POPUPTYPE } from "@/resources/constant"
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    const [{ text, isOpen }, setOpenPopup] = useState<{ text: string; isOpen: boolean }>({ text: "", isOpen: false })
+    const {
+        popup: { type, isOpen, onClick, isNotice },
+        setPopup,
+    } = usePopupStore()
 
-    const onOpen = (text: string) => setOpenPopup({ text, isOpen: true })
+    const { onGoHome, onLogout } = useControlPage()
+    const onOpen = (type: string, onClick: () => void) =>
+        setPopup(() => ({ type, isOpen: true, onClick, isNotice: false }))
 
     return (
         <Wrapper>
             <Header>
                 <div>인공지능 기반 범죄피해자 지원 서비스</div>
                 <ToolbarWrapper>
-                    <Toolbar onClick={() => onOpen("결과를 저장하고 홈 화면으로 이동하시겠습니까?")}>
+                    <Toolbar onClick={() => onOpen(POPUPTYPE.GOHOME, onGoHome)}>
                         <span>
                             <Image alt="home" src={home} />
                         </span>
                         <span>홈으로</span>
                     </Toolbar>
-                    <Toolbar onClick={() => onOpen("로그아웃 하시겠습니까?")}>
+                    <Toolbar onClick={() => onOpen(POPUPTYPE.LOGOUT, onLogout)}>
                         <span>
                             <Image alt="logout" src={logout} />
                         </span>
@@ -29,7 +37,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 </ToolbarWrapper>
             </Header>
             {children}
-            {isOpen && <Popup text={text} onClose={() => setOpenPopup(prev => ({ ...prev, isOpen: false }))} />}
+            {isOpen && (
+                <Popup
+                    isNotice={isNotice}
+                    text={popupMessage[type]}
+                    onSave={onClick}
+                    onClose={() => setPopup(prev => ({ ...prev, isOpen: false }))}
+                />
+            )}
         </Wrapper>
     )
 }

@@ -1,12 +1,14 @@
 import { Form } from "@/components/layout"
 import { AgeForm, FormItem, GenderForm, NameForm, ResultBottom, ResultForm, Title } from "./style"
 import { useCallback, useState } from "react"
-import { Button, Checkbox, Input, Popup, Selectbox } from "@/components/ui"
+import { Button, Checkbox, Input, Selectbox } from "@/components/ui"
 import { NavIcon } from "@/components/ui/icon"
 import useStore from "@/store"
 import { genders } from "@/resources/data"
 import { ButtonWrapper, Content } from "../style"
 import { useValidate } from "@/hooks/useValidate"
+import usePopupStore from "@/store/usePopup"
+import { POPUPTYPE } from "@/resources/constant"
 
 const ages = Array.from({ length: 100 }, (_, i) => {
     const value = (i + 1).toString()
@@ -23,8 +25,8 @@ const Info = () => {
         setState,
     } = useStore()
 
+    const { setPopup } = usePopupStore()
     const [isChecked, setChecked] = useState<boolean>(false)
-    const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false)
     const { isInValid } = useValidate(info)
 
     const formContent = useCallback(() => {
@@ -120,15 +122,14 @@ const Info = () => {
                                 </span>
                             }
                             onClick={() => {
-                                if (isInValid) setIsOpenPopup(true)
-                                else setState(prev => ({ ...prev, step: 2, page: 21 }))
+                                if (isInValid) {
+                                    console.log("##")
+                                    setPopup(() => ({ isNotice: true, isOpen: true, type: POPUPTYPE.FILLINFO }))
+                                } else setState(prev => ({ ...prev, step: 2, page: 21 }))
                             }}
                         />
                     </ButtonWrapper>
                 </ResultBottom>
-                {isOpenPopup && (
-                    <Popup isAlert={true} text="기본정보를 모두 작성해주세요." onSave={() => setIsOpenPopup(false)} />
-                )}
             </ResultForm>
         )
     }, [info, isChecked])
@@ -143,9 +144,6 @@ const Info = () => {
                 <Form>{formContent()}</Form>
             </Content>
             <div></div>
-            {isOpenPopup && (
-                <Popup isAlert={true} text="인적사항을 모두 작성해주세요." onSave={() => setIsOpenPopup(false)} />
-            )}
         </>
     )
 }

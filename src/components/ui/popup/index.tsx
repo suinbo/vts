@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import { ButtonWrapper, PopupInner, PopupWrapper } from "./style"
 import Button from "../button"
 import { usePreventOutside } from "@/hooks/usePreventOutside"
@@ -7,12 +7,12 @@ const Popup = ({
     text,
     onSave,
     onClose,
-    isAlert = false,
+    isNotice = false,
 }: {
     text?: string
     onSave?: () => void
     onClose?: () => void
-    isAlert?: boolean
+    isNotice?: boolean
 }) => {
     const popupRef = useRef<HTMLDivElement>(null)
 
@@ -24,8 +24,8 @@ const Popup = ({
             <PopupInner>
                 <p>{text}</p>
                 <ButtonWrapper>
-                    <Button text="예" onClick={onSave} theme={isAlert ? "lined" : "primary"} />
-                    {!isAlert && <Button text="아니오" onClick={onClose} theme="secondary" />}
+                    <Button text="예" onClick={isNotice ? onClose : onSave} theme={isNotice ? "lined" : "primary"} />
+                    {!isNotice && <Button text="아니오" onClick={onClose} theme="secondary" />}
                 </ButtonWrapper>
             </PopupInner>
         </PopupWrapper>

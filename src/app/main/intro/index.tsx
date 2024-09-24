@@ -1,6 +1,6 @@
 "use client"
 
-import { Wrapper, Content, Description, Header, Title, Body, Navigator } from "./style"
+import { Wrapper, Content, Description, Header, Title, Body, Navigator, Apply } from "./style"
 import Image from "next/image"
 import { arrow, logout } from "@/assets/images"
 import useStore from "@/store"
@@ -8,13 +8,16 @@ import { Toolbar, ToolbarWrapper } from "@/components/layout/style"
 import usePopupStore from "@/store/usePopup"
 import { POPUPTYPE } from "@/resources/constant"
 import { useControlPage } from "@/hooks/useControlPage"
-import { Popup } from "@/components/ui"
+import { Popup, SignupPopup } from "@/components/ui"
 import { popupMessage } from "@/resources/data"
+import { NavIcon } from "@/components/ui/icon"
+import { useState } from "react"
 
 const Intro = () => {
     const { setState } = useStore()
     const { onLogout } = useControlPage()
     const { popup, setPopup } = usePopupStore()
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
     return (
         <Wrapper>
@@ -60,12 +63,17 @@ const Intro = () => {
                             <li>총 23문항으로 통상 검사시 행에 걸리는 시간은 5분 내외입니다.</li>
                         </ul>
                     </Description>
+                    <Apply>
+                        <span onClick={() => setIsOpen(true)}>이용자 계정 생성</span>
+                        <NavIcon style={{ width: 12, height: 12 }} onClick={() => setIsOpen(true)} />
+                    </Apply>
                 </Content>
                 <div></div>
             </Body>
             <Navigator onClick={() => setState(prev => ({ ...prev, step: 1, page: 11 }))}>
                 <Image src={arrow} alt="arrow" priority />
             </Navigator>
+            {isOpen && <SignupPopup title="이용자 계정 생성하기" onClose={() => setIsOpen(false)} />}
             {popup.isOpen && (
                 <Popup
                     isNotice={popup.isNotice}

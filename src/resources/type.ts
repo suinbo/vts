@@ -1,3 +1,6 @@
+/** 로그인 화면 */
+export type AccountProp = { id: string; random_password: string }
+
 /** 평가화면 */
 export type AssessmentProp = {
     id: number

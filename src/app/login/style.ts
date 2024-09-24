@@ -51,21 +51,3 @@ export const ButtonForm = styled.div`
         font-size: 14px;
     }
 `
-export const ApplyForm = styled.div`
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 14px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #132d6f;
-    margin-top: 20px;
-
-    svg {
-        cursor: pointer;
-        position: relative;
-        top: 1px;
-        transform: rotate(-90deg);
-    }
-`

@@ -58,3 +58,33 @@ export const ButtonWrapper = styled.div`
         transform: rotate(-90deg);
     }
 `
+
+/** 알림 화면 */
+export const PrivacyForm = styled.div`
+    width: 100%;
+    height: 460px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 6fr 1fr;
+    gap: 20px;
+`
+
+export const NoticeContent = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    background: #fff;
+    box-shadow: 0px 0px 66.2px -22px rgba(0, 0, 0, 0.13);
+    border-radius: 40px;
+    padding: 40px 50px;
+
+    p {
+        font-size: 36px;
+
+        span {
+            font-weight: 500;
+            color: #132d6f;
+        }
+    }
+`

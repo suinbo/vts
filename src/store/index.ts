@@ -1,9 +1,12 @@
 import { create } from "zustand"
 
-interface StoreStateProp {
+export interface StoreStateProp {
     page: number
     current_enum: number
     score: number[]
+    logged_user: string
+    report: { id: number; evals: number }[]
+    test_count: number
     info: {
         [key: string]: string | number | null
         name: string
@@ -21,6 +24,9 @@ export const defaultValue = {
     page: 10,
     current_enum: 1,
     score: [],
+    logged_user: "",
+    report: [],
+    test_count: 0,
     info: {
         name: "",
         gender: "",

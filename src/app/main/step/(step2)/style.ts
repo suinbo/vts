@@ -1,6 +1,41 @@
 import styled from "styled-components"
 import { DefaultNav } from "../style"
 
+export const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    width: 1160px;
+`
+export const Title = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    .step-title {
+        font-size: 32px;
+        font-weight: 500;
+
+        span {
+            font-weight: 600;
+            margin-right: 20px;
+            color: #132d6f;
+        }
+    }
+
+    .button-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        svg {
+            transform: rotate(-90deg);
+        }
+    }
+`
+
 export const Nav = styled(DefaultNav)<{ type: string }>`
     display: flex;
     flex-direction: column;
@@ -11,6 +46,23 @@ export const Nav = styled(DefaultNav)<{ type: string }>`
         color: #132d6f;
         font-size: 14px;
         font-weight: 500;
+    }
+`
+export const ButtonWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+    gap: 18px;
+
+    > span {
+        color: #132d6f;
+        padding: 1px;
+        border-bottom: 1px solid #132d6f;
+    }
+
+    svg {
+        transform: rotate(-90deg);
     }
 `
 

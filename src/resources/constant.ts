@@ -4,4 +4,10 @@ export const POPUPTYPE = {
     FILLINFO: "fillinfo",
     CHECKANSWER: "checkanswer",
     SAVERESULT: "saveresult",
+    GOPAGE: "gopage",
+}
+
+export const USERTYPE = {
+    CLIENT: "client" as const,
+    POLICE: "police" as const,
 }

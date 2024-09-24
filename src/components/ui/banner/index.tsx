@@ -1,14 +1,8 @@
 import { StyledBanner } from "./style"
 
-const Banner = ({
-    text,
-    $color,
-    onClick,
-}: {
-    text: string
-    onClick?: () => void
-    $color: { bgColor: string; fColor: string; bdColor?: string }
-}) => {
+export type BannerColorProp = { bgColor?: string; fColor: string; bdColor?: string }
+
+const Banner = ({ text, $color, onClick }: { text: string; onClick?: () => void; $color: BannerColorProp }) => {
     return (
         <StyledBanner $color={$color} onClick={onClick}>
             {text}

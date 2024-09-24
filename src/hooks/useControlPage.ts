@@ -12,7 +12,7 @@ export const useControlPage = () => {
     /** 홈 화면 이동 */
     const onGoHome = useCallback(async () => {
         setPopup(() => ({ ...defaultPopupValue }))
-        setState(() => ({ ...defaultValue }))
+        setState(prev => ({ ...defaultValue, logged_user: prev.logged_user }))
     }, [state])
 
     /** 로그아웃 */

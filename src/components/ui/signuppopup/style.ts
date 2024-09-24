@@ -24,10 +24,16 @@ export const ImageFrame = styled.div`
 `
 
 export const Title = styled.div`
-    p {
-        font-size: 18px;
-        font-weight: 500;
-        margin-bottom: 10px;
+    div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 6px;
+        gap: 8px;
+
+        p {
+            font-size: 18px;
+            font-weight: 500;
+        }
     }
 
     span {
@@ -50,6 +56,25 @@ export const InputForm = styled.div`
         text-align: left;
     }
 `
+export const AccountForm = styled.div`
+    margin-top: 50px;
+
+    > div {
+        display: grid;
+        grid-template-columns: 3fr 6fr;
+        grid-template-rows: 30px;
+        align-items: center;
+        gap: 30px;
+        padding: 12px;
+        font-size: 15px;
+
+        span {
+            &:first-child {
+                
+            }
+        }
+`
+
 export const Alert = styled.div`
     font-size: 13px;
     color: rgb(231, 0, 0);

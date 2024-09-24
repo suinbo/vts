@@ -92,3 +92,24 @@ export const Description = styled.div`
         }
     }
 `
+export const Apply = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+
+    span {
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        color: #132d6f;
+    }
+
+    svg {
+        cursor: pointer;
+        position: relative;
+        top: 1px;
+        transform: rotate(-90deg);
+    }
+`

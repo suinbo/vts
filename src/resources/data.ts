@@ -5,6 +5,7 @@ export const popupMessage: { [key: string]: string } = {
     checkanswer: "문항에 답변해주세요.",
     fillinfo: "인정사항을 모두 작성해주세요.",
     saveresult: "[VTS 검사] 결과를 저장하시겠습니까?",
+    gopage: "검사결과를 확인하시겠습니까?",
 }
 
 export const questions = [

@@ -1,17 +1,12 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
-    padding: 48px;
+    padding: 20px 36px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 10fr;
     align-items: center;
     height: 100vh;
-
-    @media (max-width: 1600px) {
-        padding: 20px 36px;
-        grid-template-rows: 1fr 10fr;
-    }
 `
 export const Header = styled.div`
     display: flex;

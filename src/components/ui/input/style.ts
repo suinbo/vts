@@ -12,9 +12,9 @@ const inputStyle: {
     }
 } = {
     default: {
-        border: "1px solid transparent",
+        border: "1px solid #fff",
         boxShadow: "0px 0px 30px 10px rgba(46, 46, 46, 0.04)",
-        boderBottom: "none",
+        boderBottom: "1px solid transparent",
         focusColor: "1px solid #132d6f",
         padding: "12px 30px",
         textAlign: "left",

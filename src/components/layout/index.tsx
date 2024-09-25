@@ -2,10 +2,11 @@ import Image from "next/image"
 import { FormWrapper, Header, Toolbar, ToolbarWrapper, Wrapper } from "./style"
 import { Popup } from "../ui"
 import { home, logout } from "@/assets/images"
-import usePopupStore from "@/store/usePopup"
+import usePopupStore, { defaultPopupValue } from "@/store/usePopup"
 import { popupMessage } from "@/resources/data"
 import { useControlPage } from "@/hooks/useControlPage"
 import { POPUPTYPE } from "@/resources/constant"
+import useStore from "@/store"
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const {
@@ -13,16 +14,27 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         setPopup,
     } = usePopupStore()
 
+    const {
+        state: { page },
+    } = useStore()
     const { onGoHome, onLogout } = useControlPage()
     const onOpen = (type: string, onClick: () => void) =>
-        setPopup(() => ({ type, isOpen: true, onClick, isNotice: false }))
+        setPopup(() => ({
+            type,
+            isOpen: true,
+            onClick: () => {
+                onClick()
+                setPopup(() => ({ ...defaultPopupValue }))
+            },
+            isNotice: false,
+        }))
 
     return (
         <Wrapper>
             <Header>
                 <div>인공지능 기반 범죄피해자 지원 서비스</div>
                 <ToolbarWrapper>
-                    <Toolbar onClick={() => onOpen(POPUPTYPE.GOHOME, onGoHome)}>
+                    <Toolbar onClick={() => onOpen(page == 21 ? POPUPTYPE.GOHOMENSAVE : POPUPTYPE.GOHOME, onGoHome)}>
                         <span>
                             <Image alt="home" src={home} />
                         </span>

@@ -3,6 +3,7 @@
 // 'use client'
 
 import styled from 'styled-components'
+import {StyledButton} from '@/components/ui/button/style';
 
 export const Page = styled.div`
   width: 210mm;
@@ -247,4 +248,24 @@ export const Checklist = styled.div`
       padding-left: 20px;
     }
   }
+`
+
+export const PrintButton = styled(StyledButton)`
+  display: inline-block;
+  width: fit-content;
+  align-self: flex-end;
+  margin-top: 16px;
+  margin-right: 16px;
+
+  @media print {
+    display: none;
+  }
+`
+
+export const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+  
+  width: fit-content;
+  position: relative;
 `

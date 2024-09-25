@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
-    padding: 48px;
+    padding: 20px 36px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 20fr;
@@ -28,6 +28,14 @@ export const Content = styled.div`
     gap: 50px;
     width: 900px;
     text-align: center;
+
+    .notice {
+        font-size: 17px;
+        font-weight: 500;
+        span {
+            color: #d80000;
+        }
+    }
 `
 export const Navigator = styled.button`
     cursor: pointer;

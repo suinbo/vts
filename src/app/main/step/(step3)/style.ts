@@ -8,8 +8,20 @@ export const Content = styled.div`
     width: 1160px;
 `
 export const Nav = styled.div<{ type: string }>`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    .list {
+        color: #132d6f;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
     svg {
-        transform: ${props => (props.type == "next" ? "rotate(-90deg)" : "rotate(90deg)")};
+        cursor: pointer;
+        transform: rotate(90deg);
     }
 `
 
@@ -41,7 +53,7 @@ export const Title = styled.div`
     }
 `
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div<{ $isOpposed?: boolean }>`
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -55,7 +67,9 @@ export const ButtonWrapper = styled.div`
     }
 
     svg {
-        transform: rotate(-90deg);
+        position: relative;
+        top: 1px;
+        transform: ${({ $isOpposed }) => ($isOpposed ? "rotate(90deg)" : "rotate(-90deg)")};
     }
 `
 

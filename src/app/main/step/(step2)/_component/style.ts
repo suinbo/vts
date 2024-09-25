@@ -51,7 +51,7 @@ export const Item = styled.div`
     padding: 0 20px 0 18px;
     gap: 24px;
     overflow-y: scroll;
-    //height: 390px;
+    height: 300px;
     margin-top: 24px;
 
     &::-webkit-scrollbar {

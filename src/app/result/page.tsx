@@ -1,30 +1,48 @@
 "use client"
 
-import usePrintContents from './_component/print/usePrintContents'
+import usePrintContents from "./_component/print/usePrintContents"
 
-import { Checklist, Header, Personal, Summary } from './_component/print/(contents)'
-import { Contents, Page } from './_component/print/style'
-import { useEffect } from "react"
+import { Checklist, Header, Personal, Summary } from "./_component/print/(contents)"
+import { Contents, Main, Page, PrintButton } from "./_component/print/style"
+import { useEffect, useState } from "react"
+import { defaultValue, StoreStateProp } from "@/store"
+import { supabase } from "@/utils/superbase"
+import { useSearchParams } from "next/navigation"
 
 export default function PrintPage() {
-    const { checkListItem, personalInfo } = usePrintContents()
+    const params = useSearchParams()
+    const [data, setData] = useState<StoreStateProp>(defaultValue)
+
+    // console.log('fetch', data)
 
     useEffect(() => {
-        // 프린트를 안띄우고 싶으면 아래를 주석처리
-        window.document.close()
-        window.focus()
-        window.print()
-        window.close()
-    }, [])
+        const asyncFetch = async () => {
+            await supabase
+                .from("vts")
+                .select("*")
+                .eq("noid", params.get("id"))
+                .then(({ data }) => setData(data?.[0]))
+        }
+
+        asyncFetch()
+    }, [params])
+
+    const { checkListItem, personalInfo } = usePrintContents(data)
 
     return (
-        <Page>
-            <Contents>
-                <Header />
-                <Personal info={personalInfo} />
-                <Summary />
-                <Checklist items={checkListItem} />
-            </Contents>
-        </Page>
+        <Main>
+            <PrintButton onClick={() => {
+                window.print()
+            }} className='print-none' theme="lined_gray">문서 인쇄</PrintButton>
+
+            <Page>
+                <Contents>
+                    <Header />
+                    <Personal info={personalInfo} />
+                    <Summary />
+                    <Checklist items={checkListItem} />
+                </Contents>
+            </Page>
+        </Main>
     )
 }

@@ -1,17 +1,14 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import Intro from "./intro"
 import useStore from "@/store"
 import { useSession } from "@/hooks/useSession"
-import Privacy from "./step/(step2)/Privacy"
-import Info from "./step/(step1)/Info"
-import Assessment from "./step/(step2)/Assessment"
-import Report from "./step/(step3)/Report"
 import { Layout } from "@/components/layout"
 import { Body } from "./step/style"
-import Notice from "./step/(step3)/Notice"
-import ReportList from "./step/(step2)/ReportList"
+import { Info } from "./step/(step1)"
+import { Assessment, Privacy, ReportList } from "./step/(step2)"
+import { Notice, Report } from "./step/(step3)"
+import Intro from "./intro"
 
 const Main = () => {
     const {
@@ -19,8 +16,6 @@ const Main = () => {
     } = useStore()
     const { user } = useSession()
     const [view, setView] = useState<React.ReactNode>(null)
-
-    console.log(logged_user)
 
     const content: { [key: string]: { [key: number]: React.ReactNode } } = useMemo(
         () => ({

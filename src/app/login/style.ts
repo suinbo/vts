@@ -39,13 +39,17 @@ export const InputForm = styled.div`
         color: #132d6f;
         font-weight: 400;
     }
+    .error {
+        font-size: 14px;
+        color: #d80000;
+    }
 `
 
 export const ButtonForm = styled.div`
     margin-top: 34px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 20px;
 
     span {
         font-size: 14px;

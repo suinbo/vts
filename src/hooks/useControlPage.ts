@@ -11,8 +11,27 @@ export const useControlPage = () => {
 
     /** 홈 화면 이동 */
     const onGoHome = useCallback(async () => {
+        if (state.page == 21) {
+            const upsertData = async () => {
+                const { data: result } = await supabase
+                    .from("vts")
+                    .update([state])
+                    .eq("noid", state.noid)
+                    .order("created_at", { ascending: false })
+                    .limit(1)
+                    .select("userId")
+
+                if (result?.length) {
+                    setState(prev => ({ ...defaultValue, userId: result[0].userId, logged_user: prev.logged_user }))
+                }
+            }
+            await upsertData()
+        } else {
+            setState(prev => ({ ...defaultValue, userId: prev.userId, logged_user: prev.logged_user }))
+        }
+
+        //팝업 닫기
         setPopup(() => ({ ...defaultPopupValue }))
-        setState(prev => ({ ...defaultValue, logged_user: prev.logged_user }))
     }, [state])
 
     /** 로그아웃 */

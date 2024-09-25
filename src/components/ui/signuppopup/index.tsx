@@ -23,29 +23,17 @@ const SignupPopup = ({ title, onClose }: { title: string; onClose: () => void })
         const current = inputRef.current
 
         if (current && current.value) {
+            const id = current.value
+            const password = generateRandomString()
+
             const { data } = await supabase.auth.signUp({
-                email: `${current.value}@atc.com`,
-                password: generateRandomString(),
+                email: `${id}@atc.com`,
+                password,
+                options: {
+                    emailRedirectTo: "/", // 이메일 인증 링크를 보내지 않음 (supabase setting > confirm email 비활성화)
+                },
             })
-
-            if (data) {
-                const { data: response } = await supabase
-                    .from("userinfo")
-                    .select("random_password, email")
-                    .eq("id", data.user?.id)
-                if (response?.length) {
-                    const { email, random_password } = response[0] ?? { id: "", random_password: "" }
-                    const id = email.split("@")[0]
-
-                    const { data: resetResult } = await supabase.auth.admin.updateUserById(id, {
-                        password: random_password,
-                    })
-
-                    console.log(resetResult)
-
-                    setAccount({ id, random_password })
-                }
-            }
+            if (data) setAccount({ id, random_password: password })
         } else {
             setAlertMessage("입력해주세요.")
         }

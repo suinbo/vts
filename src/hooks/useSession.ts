@@ -18,13 +18,14 @@ export const useSession = () => {
 
             if (session) {
                 const { user } = session
-                const { data: response } = await supabase.from("userinfo").select("is_admin").eq("id", user?.id)
+                const { data: response } = await supabase.from("userinfo").select("is_admin, id").eq("id", user?.id)
 
                 if (response?.length) {
                     setUser(user)
                     setState(prev => ({
                         ...prev,
                         logged_user: response[0]?.is_admin ? USERTYPE.POLICE : USERTYPE.CLIENT,
+                        userId: response[0]?.id,
                     }))
                     router.push("/main")
                 }

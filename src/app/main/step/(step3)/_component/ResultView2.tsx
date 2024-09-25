@@ -22,7 +22,9 @@ const ResultView2 = ({ item: { total, grade = "", opinion } }: { item: ResultPro
                 </div>
             </ResultCompact>
             <ResultOpinion>
-                <Banner text="종합 의견" $color={{ bgColor: "#eaeaea", fColor: "#000" }} />
+                <div>
+                    <Banner text="종합 의견" $color={{ bgColor: "#eaeaea", fColor: "#000" }} />
+                </div>
                 <OpinionText>{opinion}</OpinionText>
             </ResultOpinion>
         </>

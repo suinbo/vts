@@ -69,9 +69,7 @@ export const AccountForm = styled.div`
         font-size: 15px;
 
         span {
-            &:first-child {
-                
-            }
+            user-select: text;
         }
 `
 

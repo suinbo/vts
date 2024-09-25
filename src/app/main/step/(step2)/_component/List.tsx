@@ -2,38 +2,35 @@ import React, { useCallback, useEffect, useState } from "react"
 import { Header, Item, SideListContent, SideListItems } from "./style"
 import { genders } from "@/resources/data"
 import { getFormatDate } from "@/utils/common"
-import usePopupStore from "@/store/usePopup"
+import usePopupStore, { defaultPopupValue } from "@/store/usePopup"
 import { POPUPTYPE } from "@/resources/constant"
+import { supabase } from "@/utils/superbase"
+import useStore from "@/store"
 
 type ReportItem = {
     noid: number
-    name: string
-    gender: string
-    age: number
+    info: {
+        name: string
+        gender: string
+        age: number
+    }
     created_at: string
     test_count: number
     report: { id: number; evals: number }[]
 }
 
 const List = () => {
-    const [list, setList] = useState<ReportItem[]>([
-        {
-            noid: 1,
-            age: 10,
-            gender: "F",
-            name: "김미소",
-            created_at: "2024-06-16 20:00:00",
-            test_count: 0,
-            report: [],
-        },
-    ])
-
+    const {
+        state: { logged_user },
+        setState,
+    } = useStore()
     const { setPopup } = usePopupStore()
+    const [list, setList] = useState<ReportItem[]>([])
 
     useEffect(() => {
         const fetchData = async () => {
-            // const { data: response } = await supabase.from("assessment").select("*")
-            // if (response?.length) setList(response)
+            const { data: response } = await supabase.from("vts").select("*").eq("is_completed", true)
+            if (response?.length) setList(response)
         }
         fetchData()
     }, [])
@@ -45,6 +42,9 @@ const List = () => {
                 isOpen: true,
                 type: POPUPTYPE.GOPAGE,
                 onClick: () => {
+                    //TODO 검사결과 화면 보여주기
+                    setState(prev => ({ ...prev, ...selectedItem, logged_user }))
+                    setPopup(() => ({ ...defaultPopupValue }))
                     console.log(selectedItem)
                 },
             }))
@@ -58,19 +58,21 @@ const List = () => {
                 <SideListItems>
                     <Header>
                         <div>사용자</div>
-                        <div>진행상태</div>
-                        <div>검사일자</div>
+                        <div>진행 회차</div>
+                        <div>검사 일자</div>
                     </Header>
                     <Item>
                         {list.map(item => {
-                            const { noid, name, gender, age, created_at, test_count } = item
+                            const { noid, info, created_at, test_count } = item
                             return (
-                                <div key={noid} className="item-group" onClick={() => onClickList(item)}>
+                                <div key={noid} className="item-group">
                                     <div>
-                                        {name} / {genders.find(v => v.id == gender)?.value} / 만 {age}세
+                                        {info.name} / {genders.find(v => v.id == info.gender)?.value} / 만 {info.age}세
                                     </div>
                                     <div>
-                                        <span className="test-count">{`${test_count}회차`}</span>
+                                        <span
+                                            className="test-count"
+                                            onClick={() => onClickList(item)}>{`${test_count}회차`}</span>
                                     </div>
                                     <div>{getFormatDate(created_at)}</div>
                                 </div>

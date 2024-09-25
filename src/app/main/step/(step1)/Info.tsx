@@ -9,6 +9,8 @@ import { ButtonWrapper, Content } from "../style"
 import { useValidate } from "@/hooks/useValidate"
 import usePopupStore from "@/store/usePopup"
 import { POPUPTYPE } from "@/resources/constant"
+import { supabase } from "@/utils/superbase"
+import { useSession } from "@/hooks/useSession"
 
 const ages = Array.from({ length: 100 }, (_, i) => {
     const value = (i + 1).toString()
@@ -20,14 +22,15 @@ const ages = Array.from({ length: 100 }, (_, i) => {
 })
 
 const Info = () => {
-    const {
-        state: { info },
-        setState,
-    } = useStore()
+    const { state, setState } = useStore()
 
+    const { info } = state
     const { setPopup } = usePopupStore()
     const [isChecked, setChecked] = useState<boolean>(false)
     const { isInValid } = useValidate(info)
+    const { user } = useSession()
+
+    console.log(user)
 
     const formContent = useCallback(() => {
         return (
@@ -121,11 +124,28 @@ const Info = () => {
                                     <NavIcon style={{ width: 10, height: 20 }} />
                                 </span>
                             }
-                            onClick={() => {
+                            onClick={async () => {
                                 if (isInValid) {
-                                    console.log("##")
                                     setPopup(() => ({ isNotice: true, isOpen: true, type: POPUPTYPE.FILLINFO }))
-                                } else setState(prev => ({ ...prev, step: 2, page: 21 }))
+                                } else {
+                                    const { noid, ...restState } = state
+                                    const { data: result } = await supabase
+                                        .from("vts")
+                                        .insert([restState])
+                                        .select("noid")
+
+                                    if (result?.length) {
+                                        const noid = result[0].noid
+                                        setState(prev => ({
+                                            ...prev,
+                                            noid,
+                                            step: 2,
+                                            page: 21,
+                                            userId: user?.id,
+                                            test_count: 1,
+                                        }))
+                                    }
+                                }
                             }}
                         />
                     </ButtonWrapper>

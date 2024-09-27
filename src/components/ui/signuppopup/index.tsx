@@ -27,7 +27,7 @@ const SignupPopup = ({ title, onClose }: { title: string; onClose: () => void })
             const password = generateRandomString()
 
             const { data } = await supabase.auth.signUp({
-                email: `${id}@atc.com`,
+                email: `${id}@ra.hopet-um.co.kr`,
                 password,
                 options: {
                     emailRedirectTo: "/", // 이메일 인증 링크를 보내지 않음 (supabase setting > confirm email 비활성화)

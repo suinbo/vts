@@ -5,7 +5,6 @@ export const popupMessage: { [key: string]: string } = {
     goreport: "마지막 문항 응답을 저장하시겠습니까?",
     checkanswer: "문항에 답변해주세요.",
     fillinfo: "인정사항을 모두 작성해주세요.",
-    saveresult: "[VTS 검사] 결과를 저장하시겠습니까?",
     gopage: "검사결과를 확인하시겠습니까?",
     gotest: "진행 중인 검사가 있습니다. 이어 진행하시겠습니까?",
     finishtest: "검사를 종료하시겠습니까?",

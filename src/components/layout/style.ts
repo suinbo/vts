@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
-    padding: 20px 36px;
+    padding: 17px 36px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 10fr;
@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
 export const Header = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
 `
 
 export const ListNav = styled.div`

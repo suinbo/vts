@@ -42,10 +42,8 @@ const List = () => {
                 isOpen: true,
                 type: POPUPTYPE.GOPAGE,
                 onClick: () => {
-                    //TODO 검사결과 화면 보여주기
                     setState(prev => ({ ...prev, ...selectedItem, logged_user }))
                     setPopup(() => ({ ...defaultPopupValue }))
-                    console.log(selectedItem)
                 },
             }))
         },

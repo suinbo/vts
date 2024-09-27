@@ -30,8 +30,6 @@ const Info = () => {
     const { isInValid } = useValidate(info)
     const { user } = useSession()
 
-    console.log(user)
-
     const formContent = useCallback(() => {
         return (
             <ResultForm>

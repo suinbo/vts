@@ -13,8 +13,6 @@ export default function PrintPage() {
     const params = useSearchParams()
     const [data, setData] = useState<StoreStateProp>(defaultValue)
 
-    // console.log('fetch', data)
-
     useEffect(() => {
         const asyncFetch = async () => {
             await supabase
@@ -31,9 +29,14 @@ export default function PrintPage() {
 
     return (
         <Main>
-            <PrintButton onClick={() => {
-                window.print()
-            }} className='print-none' theme="lined_gray">문서 인쇄</PrintButton>
+            <PrintButton
+                onClick={() => {
+                    window.print()
+                }}
+                className="print-none"
+                theme="lined_gray">
+                문서 인쇄
+            </PrintButton>
 
             <Page>
                 <Contents>

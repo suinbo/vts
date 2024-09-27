@@ -30,8 +30,9 @@ const inputStyle: {
 }
 
 export const StyledInput = styled.input<{ $theme: "default" | "lined" }>`
+    font-size: 16px;
     width: 100%;
-    border-radius: ${props => (props.$theme == "lined" ? "none" : "60px")};
+    border-radius: ${props => (props.$theme == "lined" ? "0" : "60px")};
     padding: ${props => inputStyle[props.$theme].padding};
     background-color: #fff;
     border: ${props => inputStyle[props.$theme].border};
@@ -46,5 +47,6 @@ export const StyledInput = styled.input<{ $theme: "default" | "lined" }>`
 
     &::placeholder {
         color: #c6c6c6;
+        font-weight: 400;
     }
 `

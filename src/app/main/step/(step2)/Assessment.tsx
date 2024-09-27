@@ -18,10 +18,8 @@ const Assessment = () => {
     const { state, setState } = useStore()
 
     const { current_enum } = state
-    const { popup, setPopup } = usePopupStore()
+    const { setPopup } = usePopupStore()
     const { currentValue, setCurrentValue } = useAssesmentData()
-
-    console.log(popup)
 
     // 문항 변경
     const onControl = useCallback(

@@ -43,13 +43,13 @@ export const Header = styled.div`
     border-bottom: 1px solid #d0d0d0;
     padding: 0 36px 16px 34px;
     font-weight: 500;
-    font-size: 15px;
+    font-size: 18px;
 `
 export const Item = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0 20px 0 18px;
-    gap: 24px;
+    gap: 20px;
     overflow-y: scroll;
     height: 300px;
     margin-top: 24px;
@@ -73,7 +73,7 @@ export const Item = styled.div`
         border-radius: 16px;
         border: 2px solid #e0e6f3;
         background: #fff;
-        font-size: 14px;
+        font-size: 17px;
 
         .test-count {
             background: #f2f5fb;
@@ -82,7 +82,6 @@ export const Item = styled.div`
             border-radius: 60px;
             font-weight: 500;
             cursor: pointer;
-            // border: 2px solid ${props => props.$color.bdColor ?? "transparent"};
             text-align: center;
         }
     }

@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
-    padding: 20px 36px;
+    padding: 30px 36px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 20fr;
@@ -40,11 +40,10 @@ export const Content = styled.div`
 export const Navigator = styled.button`
     cursor: pointer;
     position: absolute;
-    right: 0;
-    bottom: 0;
-    margin: 80px;
-    width: 100px;
-    height: 100px;
+    right: 60px;
+    bottom: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: 2px solid #132d6f;
     background: #fff;
@@ -109,7 +108,7 @@ export const Apply = styled.div`
 
     span {
         cursor: pointer;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 600;
         color: #132d6f;
     }

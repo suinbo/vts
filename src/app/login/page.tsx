@@ -31,7 +31,7 @@ const Login = () => {
             if (isInValid) return
 
             const { data, error } = await supabase.auth.signInWithPassword({
-                email: `${id}@atc.com`,
+                email: `${id}@ra.hopet-um.co.kr`,
                 password,
             })
 

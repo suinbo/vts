@@ -4,7 +4,6 @@ export const POPUPTYPE = {
     LOGOUT: "logout",
     FILLINFO: "fillinfo",
     CHECKANSWER: "checkanswer",
-    SAVERESULT: "saveresult",
     GOPAGE: "gopage",
     GOTEST: "gotest",
     FINISHTEST: "finishtest",

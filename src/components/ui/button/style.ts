@@ -6,12 +6,12 @@ const values = () => {
         primary: {
             fColor: "#fff",
             bgColor: "#132D6F",
-            border: "1px solid transparent",
+            border: "2px solid transparent",
         },
         secondary: {
             fColor: "#000",
             bgColor: "#EBEEF4",
-            border: "1px solid transparent",
+            border: "2px solid transparent",
         },
         lined: {
             fColor: "#132D6F",
@@ -23,7 +23,8 @@ const values = () => {
             fColor: "#343434",
             bgColor: "#fff",
             border: "2px solid #DFE0E2",
-            padding: "3px 30px",
+            padding: "10px 30px",
+            fontWeight: 500,
         },
     } as { [key: string]: { fColor: string; bgColor: string; border: string; padding?: string; fontWeight?: number } }
 }

@@ -85,8 +85,18 @@ const Login = () => {
             </InputForm>
             <ButtonForm>
                 <Button onClick={onSignIn} text="로그인" />
-
-                <span>※ 아이디와 비밀번호는 담당자 (02-1234-5678) 에게 문의해주세요.</span>
+                <div>
+                    <div className="text-group">
+                        <span>※</span>
+                        <span className="indented-text">
+                            본 검사의 아이디와 비밀번호는 귀하의 사건을 담당하는 경찰관에게 문의바랍니다.
+                        </span>
+                    </div>
+                    <div className="text-group">
+                        <span className="none-view">※</span>
+                        <span>(대표번호 : 062 - 609 - 2571)</span>
+                    </div>
+                </div>
             </ButtonForm>
         </Suspense>
     )

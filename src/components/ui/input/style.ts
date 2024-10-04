@@ -30,7 +30,12 @@ const inputStyle: {
 }
 
 export const StyledInput = styled.input<{ $theme: "default" | "lined" }>`
-    font-size: 16px;
+    font-size: 15px;
+
+    @media (max-width: 580px) {
+        font-size: 14px;
+    }
+
     width: 100%;
     border-radius: ${props => (props.$theme == "lined" ? "0" : "60px")};
     padding: ${props => inputStyle[props.$theme].padding};

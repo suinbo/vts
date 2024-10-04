@@ -49,7 +49,7 @@ export const Item = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0 20px 0 18px;
-    gap: 20px;
+    gap: 18px;
     overflow-y: scroll;
     height: 300px;
     margin-top: 24px;
@@ -77,7 +77,7 @@ export const Item = styled.div`
 
         .test-count {
             background: #f2f5fb;
-            padding: 3px 18px;
+            padding: 5px 18px;
             font-size: 15px;
             border-radius: 60px;
             font-weight: 500;
@@ -86,5 +86,3 @@ export const Item = styled.div`
         }
     }
 `
-//호버색상
-//background-color: #f2f5fb;

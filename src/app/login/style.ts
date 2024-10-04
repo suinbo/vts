@@ -6,7 +6,11 @@ export const Wrapper = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    width: 540px;
+    width: 610px;
+
+    @media (max-width: 580px) {
+        width: 100%;
+    }
 `
 
 export const Inner = styled.div`
@@ -19,6 +23,10 @@ export const Title = styled.div`
     margin-bottom: 24px;
     color: #132d6f;
     font-weight: 500;
+
+    @media (max-width: 580px) {
+        font-size: 34px;
+    }
 `
 
 export const Content = styled.div`
@@ -42,6 +50,14 @@ export const InputForm = styled.div`
     .error {
         font-size: 14px;
         color: #d80000;
+
+        @media (max-width: 580px) {
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 580px) {
+        font-size: 14px;
     }
 `
 
@@ -49,9 +65,21 @@ export const ButtonForm = styled.div`
     margin-top: 34px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 40px;
 
-    span {
+    > div {
+        display: flex;
+        flex-direction: column;
         font-size: 14px;
+        gap: 4px;
+
+        .text-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .none-view {
+            color: transparent;
+        }
     }
 `

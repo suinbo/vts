@@ -23,4 +23,5 @@ export interface ResultProp {
     total: number
     grade?: string
     opinion?: string
+    color?: string
 }

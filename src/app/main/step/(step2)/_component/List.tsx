@@ -29,7 +29,11 @@ const List = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data: response } = await supabase.from("vts").select("*").eq("is_completed", true)
+            const { data: response } = await supabase
+                .from("vts")
+                .select("*")
+                .eq("is_completed", true)
+                .order("created_at", { ascending: false })
             if (response?.length) setList(response)
         }
         fetchData()
@@ -57,7 +61,7 @@ const List = () => {
                     <Header>
                         <div>사용자</div>
                         <div>진행 회차</div>
-                        <div>검사 일자</div>
+                        <div>검사 일시</div>
                     </Header>
                     <Item>
                         {list.map(item => {

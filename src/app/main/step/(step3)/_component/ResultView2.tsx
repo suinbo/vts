@@ -2,7 +2,7 @@ import { Banner } from "@/components/ui"
 import { OpinionText, ResultCompact, ResultOpinion, ResultSection, Title } from "./style"
 import { ResultProp } from "@/resources/type"
 
-const ResultView2 = ({ item: { total, grade = "", opinion } }: { item: ResultProp }) => {
+const ResultView2 = ({ item: { total, grade = "", opinion, color } }: { item: ResultProp }) => {
     return (
         <>
             <ResultCompact>
@@ -10,14 +10,14 @@ const ResultView2 = ({ item: { total, grade = "", opinion } }: { item: ResultPro
                     <ResultSection $color="#EE671F">
                         <p>총 점</p>
                         <p>
-                            <span>{total}</span> 점
+                            <span style={{ color }}>{total}</span> 점
                         </p>
                     </ResultSection>
                 </div>
                 <div className="decision-level">
                     <ResultSection>
                         <Title>결정 등급</Title>
-                        <Banner text={grade} $color={{ bgColor: "#EE671F", fColor: "#fff" }} />
+                        <Banner text={grade} $color={{ bgColor: color, fColor: "#fff" }} />
                     </ResultSection>
                 </div>
             </ResultCompact>

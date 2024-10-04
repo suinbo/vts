@@ -1,7 +1,8 @@
 import { Banner } from "@/components/ui"
 import { Row } from "./style"
+import { ResultProp } from "@/resources/type"
 
-const ResultView1 = ({ score, total }: { score: number[]; total: number }) => {
+const ResultView1 = ({ score, item: { total, grade = "", color } }: { score: number[]; item: ResultProp }) => {
     return (
         <>
             <Row>
@@ -41,12 +42,14 @@ const ResultView1 = ({ score, total }: { score: number[]; total: number }) => {
             </Row>
             <Row $color="#EE671F">
                 <div className="row-title">총점</div>
-                <div className="total-score">{total}</div>
+                <div className="total-score" style={{ color }}>
+                    {total}
+                </div>
             </Row>
             <Row>
                 <div className="row-title">총점 분류</div>
                 <div>
-                    <Banner text="트라우마 군" $color={{ bgColor: "#EE671F", fColor: "#FFF" }} />
+                    <Banner text={grade} $color={{ bgColor: color, fColor: "#FFF" }} />
                 </div>
             </Row>
         </>

@@ -16,6 +16,11 @@ export const FormItem = styled.div`
     flex-direction: column;
     padding-bottom: 50px;
     border-bottom: 2px solid #d1d8e4;
+
+    .title {
+        font-size: 18px;
+        font-weight: 500;
+    }
 `
 
 export const NameForm = styled.div`
@@ -46,12 +51,14 @@ export const AgeForm = styled.div`
 
     .age-form {
         width: 50%;
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 70px;
 
         > div {
             display: flex;
-            gap: 15px;
+            gap: 20px;
+            align-items: center;
         }
     }
 `
@@ -61,6 +68,11 @@ export const ResultForm = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 100%;
+
+    .notice {
+        font-size: 15px;
+    }
 `
 
 export const ResultWrapper = styled.div``
@@ -103,5 +115,5 @@ export const ResultItem = styled.div`
 export const ResultBottom = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 22px;
 `

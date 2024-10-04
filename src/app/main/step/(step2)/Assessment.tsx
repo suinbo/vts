@@ -61,6 +61,7 @@ const Assessment = () => {
             score: getEvalsCount(currentValue.list),
             report: currentValue.list.map(({ id, evals }) => ({ id, evals })),
             is_completed: true,
+            created_at: new Date().toLocaleString("en-US", { timeZone: "Asia/Seoul" }),
         }
 
         const { data: result } = await supabase

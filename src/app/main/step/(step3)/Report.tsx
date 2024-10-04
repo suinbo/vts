@@ -24,16 +24,17 @@ const Report = () => {
 
     const resultScore = useMemo(() => {
         const total = getEvalTotalScore(score.map((item, idx) => item * (idx + 1)))
-        const { grade, opinion } = getGrade(total)
+        const { grade, opinion, color } = getGrade(total)
         return {
             total,
             grade,
             opinion,
+            color,
         }
     }, [score])
 
     const resultView: { [key: number]: React.ReactNode } = {
-        1: <ResultView1 score={score} total={resultScore.total} />,
+        1: <ResultView1 score={score} item={resultScore} />,
         2: <ResultView2 item={resultScore} />,
     }
 

@@ -35,7 +35,7 @@ const Info = () => {
             <ResultForm>
                 <FormItem>
                     <NameForm>
-                        <div>이름</div>
+                        <div className="title">이름</div>
                         <Input
                             placeholder="이름을 입력하세요."
                             value={info.name}
@@ -43,7 +43,7 @@ const Info = () => {
                         />
                     </NameForm>
                     <GenderForm>
-                        <div>성별</div>
+                        <div className="title">성별</div>
                         <div className="button-form">
                             {genders.map(({ id, value }) => (
                                 <Button
@@ -61,27 +61,29 @@ const Info = () => {
                         </div>
                     </GenderForm>
                     <AgeForm>
-                        <div>나이</div>
+                        <div className="title">나이</div>
                         <div className="age-form">
-                            <div>
+                            <div className="age-input">
                                 <span>만</span>
                                 {isChecked ? (
-                                    <Input
-                                        type="number"
-                                        theme="lined"
-                                        value={info.age ?? ""}
-                                        onChange={value => {
-                                            const numValue = Number(value)
-                                            if (numValue > 130) return
-                                            setState(prev => ({
-                                                ...prev,
-                                                info: {
-                                                    ...prev.info,
-                                                    age: numValue,
-                                                },
-                                            }))
-                                        }}
-                                    />
+                                    <div>
+                                        <Input
+                                            type="number"
+                                            theme="lined"
+                                            value={info.age ?? ""}
+                                            onChange={value => {
+                                                const numValue = Number(value)
+                                                if (numValue > 130) return
+                                                setState(prev => ({
+                                                    ...prev,
+                                                    info: {
+                                                        ...prev.info,
+                                                        age: numValue,
+                                                    },
+                                                }))
+                                            }}
+                                        />
+                                    </div>
                                 ) : (
                                     <Selectbox
                                         items={ages}
@@ -112,7 +114,7 @@ const Info = () => {
                     </AgeForm>
                 </FormItem>
                 <ResultBottom>
-                    <div>※ 해당 정보는 이용자의 동의없이 외부로 유출하지 않습니다.</div>
+                    <div className="notice">※ 해당 정보는 이용자의 동의없이 외부로 유출하지 않습니다.</div>
                     <ButtonWrapper>
                         <Button
                             theme="lined"

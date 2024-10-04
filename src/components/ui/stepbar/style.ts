@@ -21,6 +21,7 @@ export const BarWrapper = styled.div`
 `
 
 export const Step = styled.div`
+    width: 100px;
     cursor: pointer;
     display: flex;
     flex-direction: column;

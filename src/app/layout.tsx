@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import StyledComponentsRegistry from "@/lib/registry"
 import { notoSansKr } from "@/utils/font"
-import "./globals.scss"
 import { Suspense } from "react"
+import "./globals.scss"
 
 export const metadata: Metadata = {
     title: "VTS 검사",

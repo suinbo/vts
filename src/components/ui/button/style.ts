@@ -37,11 +37,16 @@ export const StyledButton = styled.button<{
     width: 100%;
     border: ${props => values()[props.theme].border};
     border-radius: 60px;
-    padding: ${props => (!values()[props.theme].padding ? "14px 30px" : values()[props.theme].padding)};
+    padding: ${props => (!values()[props.theme].padding ? "12px 30px" : values()[props.theme].padding)};
     background-color: ${props => values()[props.theme].bgColor};
-    font-size: 15px;
     font-weight: ${props => (!values()[props.theme].fontWeight ? 400 : values()[props.theme].fontWeight)};
     color: ${props => values()[props.theme].fColor};
+    font-size: 15px;
+
+    @media (max-width: 580px) {
+        font-size: 14px;
+    }
+
     label {
         display: flex;
         align-items: center;
